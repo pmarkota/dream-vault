@@ -13,10 +13,10 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <div className="bg-neutral-800 py-10 flex justify-center">
-      <div className="text-white shadow-xl bg-neutral-700 shadow-neutral-700 h-fit rounded-2xl max-w-3xl ml-20 p-8">
-        <h1 className="text-4xl font-bold mb-4">How it Works</h1>
-        <ul className="text-lg leading-7 list-disc pl-8">
+    <div className="flex justify-center py-10 bg-neutral-800">
+      <div className="max-w-3xl p-8 mx-5 text-white shadow-xl bg-neutral-700 shadow-neutral-700 h-fit rounded-2xl">
+        <h1 className="mb-4 text-4xl font-bold">How it Works</h1>
+        <ul className="pl-8 text-lg leading-7 list-disc">
           {listItems.map((item, index) => (
             <motion.li
               key={index}

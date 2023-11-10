@@ -5,8 +5,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import DreamJournal from "./pages/DreamJournal";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
+import { Account } from "./pages/Account";
 import { Login } from "./components/Login/Login";
+import { Register } from "./components/Login/Register";
 import { NextUIProvider } from "@nextui-org/react";
+import { PaymentSuccess } from "./pages/PaymentSuccess";
+import { PaymentFailure } from "./pages/PaymentFailure";
+import { CheckoutSerious } from "./components/Checkout/CheckoutSerious";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -24,7 +29,21 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/dream-journal" element={<DreamJournal />} />
               <Route path="/pricing" element={<SubscriptionPlans />} />
+              {/* login and signup */}
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+
+              {/* account */}
+              <Route path="/account" element={<Account />} />
+
+              {/* payment success */}
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+
+              {/* payment failure */}
+              <Route path="/payment-failure" element={<PaymentFailure />} />
+
+              {/* checkout */}
+              <Route path="/checkout-serious" element={<CheckoutSerious />} />
             </Routes>
           </div>
         </BrowserRouter>

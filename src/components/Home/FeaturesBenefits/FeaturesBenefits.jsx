@@ -5,20 +5,25 @@ import dreamImage from "../../../assets/dreamFandB.png";
 
 export const FeaturesBenefits = () => {
   return (
-    <div className="bg-neutral-800 py-10 flex justify-between">
-      <div className="text-white shadow-xl shadow-neutral-700 h-fit rounded-2xl max-w-3xl ml-20 p-8 pb-28">
-        <h1 className="text-4xl font-bold mb-4">
+    <div className="flex flex-col items-center py-10 bg-neutral-800">
+      <img
+        src={dreamImage}
+        className="object-cover w-64 h-64 mb-8 shadow-xl rounded-xl shadow-pink-900"
+        alt="Dreams"
+      ></img>
+      <div className="max-w-3xl p-8 text-white shadow-xl shadow-neutral-700 h-fit rounded-2xl pb-28">
+        <h1 className="mb-4 text-2xl font-bold text-center md:text-4xl">
           Why keep track of your dreams?
         </h1>
-        <p className="text-lg leading-7">
+        <p className="text-base leading-7 text-center md:text-lg">
           Why track your dreams? They offer a glimpse into your inner world,
           revealing{" "}
-          <span className="text-cyan-400 font-bold">emotions, aspirations</span>
+          <span className="font-bold text-cyan-400">emotions, aspirations</span>
           , and the mysteries of your mind. Dream journaling is your key to
           unlocking this enigmatic realm. By capturing your dreams on paper, you
           embark on a journey of self-discovery and introspection. These
           stories, often veiled in symbolism, can be a source of{" "}
-          <span className="text-cyan-400 font-bold">
+          <span className="font-bold text-cyan-400">
             inspiration, creativity
           </span>
           , and personal growth.
@@ -32,21 +37,16 @@ export const FeaturesBenefits = () => {
           transition={{
             type: "spring",
           }}
-          className="w-fit"
+          className="mx-auto w-fit"
         >
           <Link
             to="/signup"
-            className="bg-cyan-400 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded-full"
+            className="px-4 py-2 font-bold text-white rounded-full bg-cyan-400 hover:bg-cyan-500"
           >
             Start Dreaming
           </Link>
         </motion.div>
       </div>
-      <img
-        src={dreamImage}
-        className="w-96 object-cover ml-auto mr-10 rounded-xl shadow-xl shadow-pink-900"
-        alt="Dreams"
-      ></img>
     </div>
   );
 };

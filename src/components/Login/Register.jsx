@@ -1,17 +1,18 @@
 import React, { useLayoutEffect, useEffect, useState } from "react";
 import logo from "../../assets/DarkLogo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../../services/api";
+import { useRegister } from "../../services/api";
 import { motion } from "framer-motion";
 import { MutatingDots } from "react-loader-spinner";
 
-export const Login = () => {
+export const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
-  const loginMutation = useLogin();
+  const registerMutation = useRegister();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,13 +23,13 @@ export const Login = () => {
 
   useLayoutEffect(() => {
     if (isLoggedIn) {
-      navigate("/account");
+      navigate("/dream-journal");
     }
   }, [isLoggedIn]);
 
-  const handleLogin = async () => {
-    const credentials = { username, password };
-    const data = await loginMutation.mutateAsync(credentials, {
+  const handleRegister = async () => {
+    const credentials = { email, username, password };
+    const data = await registerMutation.mutateAsync(credentials, {
       onSuccess: (data) => {
         localStorage.setItem("token", data.token);
         navigate("/dream-journal");
@@ -36,7 +37,7 @@ export const Login = () => {
     });
   };
 
-  return loginMutation.isLoading ? (
+  return registerMutation.isLoading ? (
     <div className="flex items-center justify-center min-h-screen bg-gray-700">
       <motion.div
         initial={{ opacity: 0 }}
@@ -63,8 +64,19 @@ export const Login = () => {
       {/* desktop */}
       <div className="hidden md:flex">
         <div className="w-1/2 min-h-screen p-6 bg-gradient-to-b from-white to-neutral-400 ">
-          <h2 className="mb-2 text-4xl font-bold">Welcome back</h2>
-          <p className="mb-4 text-xl">Sign in to your account</p>
+          <h2 className="mb-2 text-4xl font-bold">Hello Dreamer!</h2>
+          <p className="mb-4 text-xl">Create your account here</p>
+          <label className="text-gray-700" htmlFor="emailPC">
+            Email
+          </label>
+          <input
+            type="email"
+            id="emailPC"
+            className="flex items-center w-full py-2 pl-2 mb-4 border border-gray-300 rounded-md"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label className="text-gray-700" htmlFor="usernamePC">
             Username
           </label>
@@ -88,23 +100,23 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             onKeyDownCapture={(e) => {
               if (e.key === "Enter") {
-                handleLogin();
+                handleRegister();
               }
             }}
           />
           <button
             className="w-full py-2 font-semibold text-white rounded-md bg-cyan-700"
-            onClick={() => handleLogin()}
+            onClick={() => handleRegister()}
           >
-            Sign in to your account
+            Create your account
           </button>
           <p className="mt-4">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Link
-              to="/register"
+              to="/login"
               className="font-bold underline transition-all duration-500 ease-in-out text-cyan-500 active:text-cyan-400"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </div>
@@ -127,10 +139,21 @@ export const Login = () => {
       <div className="min-h-screen bg-gradient-to-b from-cyan-600 to-cyan-800">
         <div className="p-6">
           <div className="mb-4">
-            <h2 className="text-2xl font-bold text-white">Welcome back</h2>
-            <p className="text-lg text-white">Sign in to your account</p>
+            <h2 className="text-2xl font-bold text-white">Hello Dreamer!</h2>
+            <p className="text-lg text-white">Create your account here</p>
           </div>
           <div className="mb-4">
+            <label className="text-gray-100" htmlFor="emaiil">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="flex items-center w-full py-2 pl-2 mb-4 border border-gray-300 rounded-md"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label className="text-gray-100" htmlFor="username">
               Username
             </label>
@@ -156,38 +179,30 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               onKeyDownCapture={(e) => {
                 if (e.key === "Enter") {
-                  handleLogin();
+                  handleRegister();
                 }
               }}
             />
           </div>
           <button
             className="w-full py-2 font-semibold text-white rounded-md bg-cyan-900"
-            onClick={() => handleLogin()}
+            onClick={() => handleRegister()}
           >
-            Sign in to your account
+            Create your account
           </button>
           <p className="mt-4 text-gray-100">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Link
-              to="/register"
+              to="/login"
               className="font-bold underline text-neutral-300 active:text-cyan-400"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </div>
         <div className="px-10 py-3 pb-[1px] mx-auto bg-neutral-800 rounded-lg shadow-lg shadow-neutral-600 hover:shadow-xl hover:shadow-neutral-800 transition ease-in-out duration-500 mb-10">
           <img src={logo} alt="Logo" className="w-24 mx-auto mb-4 auto" />
         </div>
-        <h3 className="text-4xl font-bold text-center text-white">
-          Explore the world’s leading design portfolios.
-        </h3>
-        <p className="mt-4 text-base text-center text-gray-100">
-          Millions of designers and agencies around the world showcase their
-          portfolio work on Flowbite - the home to the world’s best design and
-          creative professionals.
-        </p>
       </div>
     </div>
   );

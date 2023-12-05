@@ -1,12 +1,32 @@
 import React from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { fetchLatestDream } from "../fetchers/dreamFetchers";
+import { fetchLatestDream, fetchCreateDream } from "../fetchers/dreamFetchers";
 
 export const useLatestDream = () => {
-  const response = useQuery({
-    queryKey: "latestDream",
+  return useQuery({
+    queryKey: ["getLatestDream"],
     queryFn: () => fetchLatestDream(),
   });
-  console.log(response.json());
-  return response.json();
+};
+
+export const useCreateDream = () => {
+  const createDreamMutation = useMutation({
+    mutationFn: ({
+      username,
+      dreamTitle,
+      dreamDescription,
+      dreamVisualDescription,
+      dreamDate,
+      dreamPublic,
+    }) =>
+      fetchCreateDream(
+        username,
+        dreamTitle,
+        dreamDescription,
+        dreamVisualDescription,
+        dreamDate,
+        dreamPublic
+      ),
+  });
+  return createDreamMutation;
 };

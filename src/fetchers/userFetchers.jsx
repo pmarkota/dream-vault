@@ -11,6 +11,7 @@ const fetchUser = async (token) => {
     body: JSON.stringify({ token }),
   });
   const data = await response.json();
+  console.log(data);
   return data;
 };
 

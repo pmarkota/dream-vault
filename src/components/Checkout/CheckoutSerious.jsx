@@ -1,13 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCreateCheckoutSession } from "../../services/paymentsApi";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutSerious = () => {
   const createCheckoutSessionMutation = useCreateCheckoutSession();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
   const handleCheckout = () => {
-    createCheckoutSessionMutation.mutate({
-      priceId: "price_1OAaSsA0uJcL26TxPF5TNWY8",
-    });
+    if (token) {
+      createCheckoutSessionMutation.mutate({
+        priceId: "price_1OAaSsA0uJcL26TxPF5TNWY8",
+      });
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div className="min-h-screen mx-5 text-center text-white ">
@@ -36,10 +43,17 @@ export const CheckoutSerious = () => {
           <div className="py-1 mx-2 rounded-lg bg-gradient-to-tr from-neutral-700 via-cyan-900 to-neutral-900">
             <h1 className="text-lg font-bold text-neutral-200">Serious Plan</h1>
             <p className="px-3 text-lg text-neutral-200">
-              Billed monthly. Renews automatically, cancel any time.
+              Billed monthly. Renews automatically, cancel any time.{" "}
+              <span>
+                <p className="font-bold text-red-400 uppercase text-[10px]">
+                  important:when making an order make sure you input the same
+                  email you registered with
+                </p>
+              </span>
             </p>
           </div>
         </div>
+
         <div className="mx-2 cursor-pointer" onClick={() => handleCheckout()}>
           <div className="min-w-full py-1 mt-3 font-bold bg-white rounded-full x-3 text-neutral-800">
             Continue to checkout

@@ -22,7 +22,7 @@ const DreamJournal = () => {
   }, []);
 
   return (
-    <div className="page-container">
+    <div className="bg-gradient-to-r from-neutral-800 via-neutral-900 to-neutral-800 page-container">
       <AnimatePresence>
         {isLoading ? (
           <motion.div

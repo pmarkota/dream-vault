@@ -124,7 +124,7 @@ export const Login = () => {
         </div>
       </div>
       {/* mobile */}
-      <div className="min-h-screen bg-gradient-to-b from-cyan-600 to-cyan-800">
+      <div className="min-h-screen md:hidden bg-gradient-to-b from-cyan-600 to-cyan-800">
         <div className="p-6">
           <div className="mb-4">
             <h2 className="text-2xl font-bold text-white">Welcome back</h2>

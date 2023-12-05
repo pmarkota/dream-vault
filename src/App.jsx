@@ -10,12 +10,12 @@ import { Login } from "./components/Login/Login";
 import { Register } from "./components/Login/Register";
 import { NextUIProvider } from "@nextui-org/react";
 import { PaymentSuccess } from "./pages/PaymentSuccess";
+import { NewDreamForm } from "./pages/DreamJournal/NewDreamForm";
 import { PaymentFailure } from "./pages/PaymentFailure";
 import { CheckoutSerious } from "./components/Checkout/CheckoutSerious";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,7 +27,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+
+              {/* dream journal */}
               <Route path="/dream-journal" element={<DreamJournal />} />
+              <Route
+                path="/dream-journal/new-dream"
+                element={<NewDreamForm />}
+              />
+
+              {/* subscription plans */}
               <Route path="/pricing" element={<SubscriptionPlans />} />
               {/* login and signup */}
               <Route path="/login" element={<Login />} />

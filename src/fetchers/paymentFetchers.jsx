@@ -27,15 +27,16 @@ const fetchToCustomerPortal = async (returnUrl) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      body: JSON.stringify({ returnUrl }),
     },
+    body: JSON.stringify({ returnUrl }),
   });
   const data = await response.json();
+  console.log(data);
 
   window.location.href = data.url;
   return data;
 };
-export { fetchCreateCheckoutSession };
+export { fetchCreateCheckoutSession, fetchToCustomerPortal };
 const redirectToCheckout = async (sessionId) => {
   const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   const { error } = await stripe.redirectToCheckout({

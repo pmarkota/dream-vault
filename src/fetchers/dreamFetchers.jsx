@@ -14,7 +14,38 @@ const fetchLatestDream = async () => {
   if (data.error) {
     console.log(data.error);
   }
+  console.log(data);
   return data;
 };
 
-export { fetchLatestDream };
+const fetchCreateDream = async (
+  username,
+  dreamTitle,
+  dreamDescription,
+  dreamVisualDescription,
+  dreamDate,
+  dreamPublic
+) => {
+  const response = await fetch(`${baseApiUrl}dream/createdream`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      dreamTitle,
+      dreamDescription,
+      dreamVisualDescription,
+      dreamDate,
+      dreamPublic,
+    }),
+  });
+  const data = await response.json();
+  if (data.error) {
+    console.log(data.error);
+  }
+  console.log(data);
+  return data;
+};
+
+export { fetchLatestDream, fetchCreateDream };
